@@ -137,11 +137,11 @@ module Caboose #:nodoc:
             end
 
             def with_deleted_scope(&block)
-              with_scope({:find => { :conditions => ["#{table_name}.#{deleted_attribute} IS NULL OR #{table_name}.#{deleted_attribute} > ?", current_time] } }, :merge, &block)
+              with_scope({:find => { :conditions => ["#{table_name}.#{deleted_attribute} IS NULL"] } }, :merge, &block)
             end
 
             def with_only_deleted_scope(&block)
-              with_scope({:find => { :conditions => ["#{table_name}.#{deleted_attribute} IS NOT NULL AND #{table_name}.#{deleted_attribute} <= ?", current_time] } }, :merge, &block)
+              with_scope({:find => { :conditions => ["#{table_name}.#{deleted_attribute} IS NOT NULL"] } }, :merge, &block)
             end
 
           private
